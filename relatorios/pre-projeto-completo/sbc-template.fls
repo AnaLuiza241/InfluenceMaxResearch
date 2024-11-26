@@ -1,6 +1,6 @@
-PWD c:\Users\analu\InfluenceMaxResearch\relatorios\pre-projeto
+PWD c:\Users\analu\InfluenceMaxResearch\relatorios\pre-projeto-completo
 INPUT C:\Users\analu\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\analu\InfluenceMaxResearch\relatorios\pre-projeto\sbc-template.tex
+INPUT c:\Users\analu\InfluenceMaxResearch\relatorios\pre-projeto-completo\sbc-template.tex
 OUTPUT sbc-template.log
 INPUT C:\Users\analu\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\analu\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
