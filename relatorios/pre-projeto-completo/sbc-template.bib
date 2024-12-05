@@ -80,4 +80,21 @@ urldate = {2024-08-01},
 }
 %%% Fim das referências de exemplo
 
-
+% Artigo de amostragem em grafos
+@inproceedings{10.1145/1150402.1150479,
+author = {Leskovec, Jure and Faloutsos, Christos},
+title = {Sampling from large graphs},
+year = {2006},
+isbn = {1595933395},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1150402.1150479},
+doi = {10.1145/1150402.1150479},
+abstract = {Given a huge real graph, how can we derive a representative sample? There are many known algorithms to compute interesting measures (shortest paths, centrality, betweenness, etc.), but several of them become impractical for large graphs. Thus graph sampling is essential.The natural questions to ask are (a) which sampling method to use, (b) how small can the sample size be, and (c) how to scale up the measurements of the sample (e.g., the diameter), to get estimates for the large graph. The deeper, underlying question is subtle: how do we measure success?.We answer the above questions, and test our answers by thorough experiments on several, diverse datasets, spanning thousands nodes and edges. We consider several sampling methods, propose novel methods to check the goodness of sampling, and develop a set of scaling laws that describe relations between the properties of the original and the sample.In addition to the theoretical contributions, the practical conclusions from our work are: Sampling strategies based on edge selection do not perform well; simple uniform random node selection performs surprisingly well. Overall, best performing methods are the ones based on random-walks and "forest fire"; they match very accurately both static as well as evolutionary graph patterns, with sample sizes down to about 15\% of the original graph.},
+booktitle = {Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+pages = {631–636},
+numpages = {6},
+keywords = {scaling laws, graph sampling, graph mining},
+location = {Philadelphia, PA, USA},
+series = {KDD '06}
+}

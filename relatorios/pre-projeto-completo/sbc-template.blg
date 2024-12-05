@@ -1,9 +1,9 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'sbc-template.blg'
-[216] biber-MSWIN64:340> INFO - === 
-[295] Biber.pm:419> INFO - Reading 'sbc-template.bcf'
-[563] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
-[595] bbl.pm:660> INFO - Writing 'sbc-template.bbl' with encoding 'UTF-8'
-[596] bbl.pm:763> INFO - Output to sbc-template.bbl
-[596] Biber.pm:131> WARN - The file 'sbc-template.bcf' does not contain any citations!
-[596] Biber.pm:133> INFO - WARNINGS: 1
+[280] biber-MSWIN64:340> INFO - === 
+[369] Biber.pm:419> INFO - Reading 'sbc-template.bcf'
+[821] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[854] bbl.pm:660> INFO - Writing 'sbc-template.bbl' with encoding 'UTF-8'
+[854] bbl.pm:763> INFO - Output to sbc-template.bbl
+[855] Biber.pm:131> WARN - The file 'sbc-template.bcf' does not contain any citations!
+[855] Biber.pm:133> INFO - WARNINGS: 1

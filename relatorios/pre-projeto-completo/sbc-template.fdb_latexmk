@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber sbc-template"] 1730829085 "sbc-template.bcf" "sbc-template.bbl" "sbc-template" 1731282005 0
-  "./sbc-template.bib" 1730829516 2462 1e0d6ee9eb63d3dcb516f3bf3ec29195 ""
+["biber sbc-template"] 1733420483 "sbc-template.bcf" "sbc-template.bbl" "sbc-template" 1733420558 0
+  "./sbc-template.bib" 1733420480 4458 106670a1a9439535517feec1c96d553f ""
   "sbc-template.bcf" 1731282003 113296 d865cc4c217f3bfddee5ab9da02cf584 "pdflatex"
   (generated)
   "sbc-template.bbl"
   "sbc-template.blg"
   (rewritten before read)
-["pdflatex"] 1731281998 "c:/Users/analu/InfluenceMaxResearch/relatorios/pre-projeto-completo/sbc-template.tex" "sbc-template.pdf" "sbc-template" 1731282005 0
+["pdflatex"] 1731281998 "c:/Users/analu/InfluenceMaxResearch/relatorios/pre-projeto-completo/sbc-template.tex" "sbc-template.pdf" "sbc-template" 1733420558 0
   "C:/Users/analu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1730818908 136867 22753ba0af79b5cde571205f6e0c97ed ""
   "C:/Users/analu/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1688513436 20028 5c9e7105fe6c3485f58d456098864d12 ""
   "C:/Users/analu/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1729521555 14064 efb0b8045a27c117cf593abaa638ca48 ""
@@ -146,7 +146,7 @@
   "c:/Users/analu/InfluenceMaxResearch/relatorios/pre-projeto-completo/sbc-template.tex" 1731281993 10766 bd243cd6389d5750e5f74504eed3f363 ""
   "fig1.jpg" 1730829516 39933 e1bbe31b6df35507bbaf99995585d636 ""
   "sbc-template.aux" 1731282003 1100 24911a0f95d0240f881afc0072489b3c "pdflatex"
-  "sbc-template.bbl" 1730829089 486 ee04f40f768daeed26442158e95aba61 "biber sbc-template"
+  "sbc-template.bbl" 1733420558 486 ee04f40f768daeed26442158e95aba61 "biber sbc-template"
   "sbc-template.run.xml" 1731282003 2501 fa891eac0640529ab1093f7c3cfe4e61 "pdflatex"
   "sbc-template.sty" 1730829516 5215 19b7820f88553d2b2ba02db9ef2f172b ""
   "sbc-template.tex" 1731281993 10766 bd243cd6389d5750e5f74504eed3f363 ""
