@@ -1,0 +1,5 @@
+network,backbone_method,time_spent,spread
+input_network,k-core,0,0,Error: max() iterable argument is empty
+input_network,disparity filter,0,0,Error: max() iterable argument is empty
+input_network,k-core,0,0,Error: The node None is not in the graph.
+input_network,disparity filter,631.3286504745483,456,Success

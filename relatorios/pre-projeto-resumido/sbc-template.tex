@@ -64,7 +64,7 @@
 % 2024-10-17: (fahadkalil) Inserção de comentários com outras citações e indicação de uso do comando "\enquote"
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CABEÇALHO
-\title{Aplicação de Redes Neurais em Grafos para Aproximação da Métrica de Betweenness Centrality em Redes Sociais}
+\title{Extração de Backbone para Reduzir o Tempo de Solução do Problema de Maximização de Influência em Redes Sociais}
 
 \author{Ana Luiza Almeida Soares\inst{1}, Rodrigo César Pedrosa Silva\inst{1}} % autor principal, orientador
 
@@ -88,11 +88,26 @@
 
 As redes sociais têm se mostrado ferramentas poderosas para resolver uma ampla gama de problemas em diferentes áreas. Essas redes não se restringem apenas a plataformas digitais como Facebook, Twitter e Instagram, mas também são aplicáveis em contextos que envolvem interações entre elementos, como a disseminação de informações, a propagação de doenças, e a maximização de influência em campanhas de marketing. Sendo assim, em contextos como o espalhamento de notícias ou epidemias, a compreensão da estrutura da rede é crucial para prever e controlar o fluxo de informações ou patógenos.
 
-Nessas aplicações, o peso das arestas desempenha um papel fundamental, uma vez que muitos algoritmos dependem dessa informação para operar de maneira eficiente. Por exemplo, o algoritmo de \textit{Linear Threshold} utiliza os pesos das arestas para determinar a probabilidade de um nó influenciar seus vizinhos, o que impacta diretamente o resultado do processo de propagação de influência. No entanto, obter essas informações de peso nem sempre é uma tarefa trivial, especialmente em redes grandes e complexas, onde esses valores podem não ser conhecidos ou fáceis de mensurar.
+O problema de Maximização de Influência busca identificar o conjunto de pessoas que maximiza a propagação de influência em uma rede social. Em outras palavras, considerando uma rede social onde os nós representam pessoas e as arestas indicam o nível de influência que uma pessoa exerce sobre outra, o objetivo é encontrar o conjunto de nós que maximize o número de outros nós influenciados.
 
-Uma abordagem comum para atribuir pesos às arestas em redes sociais é o uso da métrica de \textit{Betweenness Centrality}. Esta métrica mede a frequência com que uma aresta aparece nos caminhos mínimos entre todos os pares de nós na rede, sendo, portanto, um indicador de sua importância estrutural. No entanto, calcular a \textit{Betweenness Centrality} é um processo computacionalmente custoso, com complexidade \(O(n^2 m)\) em grafos não ponderados, onde \(n\) é o número de nós e \(m\) é o número de arestas. Isso torna o uso dessa métrica inviável para redes sociais de grande escala.
+Esse problema possui inúmeras aplicações, desde a divulgação de produtos em redes sociais até a análise da eficácia da disseminação de informações políticas. O campo vem sendo amplamente estudado devido ao impacto significativo que as redes sociais digitais exercem na formação da opinião pública.
 
-Diante desse desafio, o objetivo deste trabalho é utilizar uma \textit{Graph Neural Network} (GNN) para prever a \textit{Betweenness Centrality} das arestas em redes sociais, aproximando seu valor de forma mais eficiente. A proposta é explorar o potencial das GNNs para aprender padrões complexos de conectividade e fornecer estimativas precisas dessa métrica, reduzindo significativamente o tempo de processamento necessário em comparação aos métodos tradicionais.
+A solução ideal para o problema envolveria avaliar todas as permutações possíveis de conjuntos, mas isso é inviável para redes grandes, devido ao tempo necessário para construir e comparar cada permutação em busca da melhor. 
+
+Consequentemente, várias abordagens foram desenvolvidas. Uma das abordagens utilizadas para lidar com a complexidade do problema de Maximização de Influência é reduzir o tamanho da rede, simplificando o problema e, teoricamente, diminuindo o tempo necessário para encontrar uma solução. Uma técnica comum para isso é a utilização do "backbone" da rede, que consiste em identificar e manter apenas os nós e arestas mais importantes para a propagação de influência, enquanto remove elementos menos relevantes.
+
+A ideia central dessa abordagem é que, ao resolver o problema de maximização de influência em uma rede reduzida, ou backbone, o tempo de processamento é significativamente menor, sem perda substancial de precisão. A hipótese é que, uma vez obtido o conjunto de nós influentes no backbone, o espalhamento da influência na rede original pode ser estimado de maneira eficaz, com uma quantidade de nós influenciados semelhante àquela que seria obtida em uma análise completa da rede.
+
+Essa estratégia oferece uma solução mais eficiente, mantendo o desempenho aproximado das abordagens tradicionais, mas com uma redução substancial no custo computacional.
+
+\subsection{Objetivos}
+
+O objetivo deste estudo é investigar a aplicação da técnica de extração de backbone na estrutura de redes sociais e avaliar seus efeitos no desempenho computacional e na qualidade dos resultados do problema de maximização de influência. Especificamente, buscamos:
+\begin{itemize}
+    \item Investigar o impacto da extração de backbone na estrutura de redes sociais: Analisar como a redução da rede para um backbone afeta a propagação de influência e a representação da rede original, identificando os nós e arestas essenciais para a dinâmica de disseminação.
+    \item Avaliar a influência do backbone na eficiência computacional do problema de maximização de influência: Examinar o impacto da utilização de backbone na redução do tempo de processamento necessário para resolver o problema de maximização de influência, comparando a abordagem com o modelo completo da rede.
+    \item Identificar possíveis ganhos ou perdas em termos de tempo de execução e qualidade dos resultados: Verificar se a abordagem de backbone resulta em ganhos significativos de tempo sem comprometer a precisão da estimativa do número de nós influenciados, ou se há perdas notáveis na qualidade dos resultados em termos de alcance da influência. 
+\end{itemize}
 
 % \section{Referencial Teórico}
 % Voltado ao objetivo geral (teoria por trás do método), deve conter os assuntos bases da pesquisa, fazendo citações indiretas e diretas curtas.
@@ -155,9 +170,13 @@ Diante desse desafio, o objetivo deste trabalho é utilizar uma \textit{Graph Ne
 
 \section{Materiais e Métodos}
 
-A metodologia adotada para este trabalho envolve a escolha de três redes sociais, o cálculo da \textit{Betweenness Centrality} dessas redes, a seleção aleatória de algumas arestas com seus respectivos valores de \textit{Betweenness}, e a alimentação de uma \textit{Graph Neural Network} (GNN) com esses dados. Posteriormente, a previsão da GNN será comparada com os valores reais de \textit{Betweenness}, e o erro obtido será utilizado para avaliar a qualidade da previsão.
+A metodologia adotada para este trabalho envolve a análise de redes sociais a partir da extração do backbone, seguida da aplicação de um algoritmo de maximização de influência. O processo será realizado em duas etapas: uma para a rede completa e outra para o backbone extraído.
 
-As redes sociais escolhidas para a experimentação foram obtidas a partir dos sites disponibilizados pelo Professor Dr. Vander Freitas na disciplina \textit{PCC 121 Redes Complexas}. Essas redes representam páginas do Facebook (verificadas, ou seja, páginas azuis) de diferentes categorias, e os nós representam as páginas enquanto as arestas representam as "curtidas mútuas" entre elas. Abaixo estão as redes selecionadas para o estudo:
+Primeiramente, serão selecionadas três redes sociais como estudo de caso. A partir dessas redes, será extraído o backbone, que consiste em uma versão simplificada da rede, mantendo apenas os nós e arestas mais relevantes para a propagação de influência. Em seguida, será aplicado um algoritmo de maximização de influência para identificar o conjunto de nós influentes em ambas as versões da rede, tanto na rede completa quanto no backbone.
+
+Com os nós influentes identificados, será calculado o espalhamento, ou seja, a quantidade de nós influenciados em cada rede. O tempo de execução do algoritmo será registrado para ambas as redes, e os resultados serão comparados para avaliar as diferenças em termos de número de nós influenciados e eficiência computacional. O objetivo é verificar se a utilização do backbone resulta em uma redução significativa no tempo de processamento, mantendo uma qualidade similar na quantidade de nós influenciados em relação à rede completa.  
+
+As redes sociais escolhidas para a experimentação foram obtidas a partir dos sites disponibilizados pelo Professor Dr. Vander Freitas na disciplina \textit{PCC 121 Redes Complexas}. Essas redes representam páginas do Facebook (verificadas, ou seja, páginas azuis) de diferentes categorias, e os nós representam as páginas enquanto as arestas representam as "curtidas mútuas" entre elas. Porém, devido a limitações de tempo, só foi possível executar para a rede 1. Abaixo estão as redes selecionadas para o estudo:
 
 \begin{enumerate}
     \item \textbf{Site:} \url{https://networkrepository.com/fb-pages-politician.php} \\
@@ -220,9 +239,29 @@ As redes sociais escolhidas para a experimentação foram obtidas a partir dos s
     %     \end{tblr}
     % \end{table}
 
-\section{Resultados Esperados}
+\section{Resultados Obtidos}
 
-Espera-se que o erro entre a previsão da \textit{Graph Neural Network} (GNN) e os valores reais de \textit{Betweenness Centrality} não seja significativamente alto, indicando que a rede neural é capaz de aprender e generalizar bem as características da rede para estimar essa métrica de forma precisa. Além disso, espera-se que, ao utilizar a GNN para prever os valores de \textit{Betweenness}, haja uma melhoria considerável no tempo de processamento em comparação com o cálculo tradicional dessa métrica, que é computacionalmente custoso.
+A tabela a seguir apresenta os resultados obtidos para o problema de maximização de influência, tanto para a rede completa quanto para a rede com backbone extraído.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Configuração} & \textbf{Tempo de Execução} & \textbf{Nós Influenciados} & \textbf{Taxa} \\ \hline
+Com Backbone           & 10 min 31 seg              & 456 nós                    & 98,32\%  de acerto               \\ \hline
+Sem Backbone           & 13 min 37 seg              & 478 nós                    & 23,15\% de redução                       \\ \hline
+\end{tabular}
+\caption{Resultados de execução do algoritmo de maximização de influência com e sem Backbone}
+\end{table}
+
+Os resultados indicam que o uso do backbone proporcionou uma redução no tempo de execução. Quando o algoritmo foi executado com o backbone, o tempo total foi de 10 minutos e 31 segundos, enquanto na rede completa o tempo foi de 13 minutos e 37 segundos, o que representa uma redução de 23,15\%* no tempo de processamento. Essa melhoria é atribuída à simplificação da rede, que resultou em menor número de nós e arestas, permitindo uma execução mais rápida.
+
+Em termos de quantidade de nós influenciados, a rede com backbone resultou em 456 nós influenciados, enquanto a rede completa influenciou 478 nós. A diferença de 22 nós é pequena, representando uma redução de aproximadamente 4,6\% na quantidade de nós influenciados ao se utilizar o backbone. Esse pequeno desvio está dentro do esperado, já que a rede com backbone é uma versão simplificada, com menos conectividade.
+
+A taxa de acerto, calculada como a proporção de nós influenciados na rede com backbone em relação à rede completa, foi de 98,32\%. Isso significa que, apesar da redução no número de nós influenciados, o algoritmo foi capaz de aproximar a solução da rede completa com uma margem de erro muito pequena. Esse resultado indica que o uso do backbone não compromete substancialmente a qualidade da previsão, mantendo uma alta precisão na identificação dos nós influenciados.
+
+Em resumo, os resultados sugerem que a utilização do backbone trouxe uma significativa redução no tempo de execução (23,15\%) com uma ligeira perda na quantidade de nós influenciados (4,6\%), mas com uma taxa de acerto de 98,32\%, indicando que a abordagem é eficiente em termos de tempo, mantendo uma boa qualidade nos resultados.
+    
 
 
     
